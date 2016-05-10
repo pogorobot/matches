@@ -26,22 +26,55 @@
     <script type="text/babel">
       var ExampleApplication = React.createClass({
         getInitialState: function() {
-          return { eggs: 0, mothers: 0 };
+          return { eggs: 0, mothers: 0, motherCost: 8, lastHatch: new Date().getTime() };
         },
         layEgg: function() {
           this.setState({
             eggs: this.state.eggs + 1
           });
         },
+        hatch: function() {
+          this.setState({
+            eggs: this.state.eggs + this.eggsSinceLastHatch() - this.state.motherCost,
+            mothers: this.state.mothers + 1,
+            lastHatch: new Date().getTime()
+          });
+        },
+        elapsed: function() {
+          return new Date().getTime() - this.state.lastHatch;
+        },
+        eggsSinceLastHatch: function() {
+          var elapsed = (new Date().getTime() - this.state.lastHatch);
+          var motherSpeed = 1 / 1000;
+
+          return Math.floor(elapsed * this.state.mothers * motherSpeed);
+        },
         render: function() {
+          var motherCost = this.state.motherCost;
+
           var mothers = this.state.mothers;
-          var elapsed = this.props.elapsed;
-          var eggs = this.state.eggs;
+
+          var eggs = Math.floor(this.state.eggs + this.eggsSinceLastHatch());
           if (mothers) {
             var mothersReport = 'You have ' + mothers + ' Mothers.';
           }
           var eggsReport =
             'Your Mothers have laid ' + eggs + ' spider eggs.';
+
+          if (Math.floor(eggs / motherCost) > 0) {
+            var hatchMother = (
+              <div>
+                <p>
+                  You have enough eggs to hatch {Math.floor(eggs / motherCost)} Mothers.
+                </p>
+                <p>
+                  <button onClick={this.hatch}>
+                    Hatch a Mother
+                  </button>
+                </p>
+              </div>
+            );
+          }
 
           return (
             <div>
@@ -52,6 +85,7 @@
                   Lay an Egg
                 </button>
               </p>
+              {hatchMother}
             </div>
           );
         }
@@ -59,7 +93,7 @@
       var start = new Date().getTime();
       setInterval(function() {
         ReactDOM.render(
-          <ExampleApplication elapsed={new Date().getTime() - start} />,
+          <ExampleApplication />,
           document.getElementById('container')
         );
       }, 50);
