@@ -35,10 +35,23 @@
         },
         hatch: function() {
           this.setState({
-            eggs: this.state.eggs + this.eggsSinceLastHatch() - this.state.motherCost,
+            eggs: this.eggs() - this.state.motherCost,
             mothers: this.state.mothers + 1,
             lastHatch: new Date().getTime()
           });
+        },
+        hatchAll: function() {
+          this.setState({
+            eggs: this.eggs() - (this.state.motherCost * this.possibleMothers()),
+            mothers: this.state.mothers + this.possibleMothers(),
+            lastHatch: new Date().getTime()
+          });
+        },
+        possibleMothers: function() {
+          return Math.floor(this.eggs() / this.state.motherCost);
+        },
+        eggs: function() {
+          return this.state.eggs + this.eggsSinceLastHatch();
         },
         elapsed: function() {
           return new Date().getTime() - this.state.lastHatch;
@@ -54,7 +67,7 @@
 
           var mothers = this.state.mothers;
 
-          var eggs = Math.floor(this.state.eggs + this.eggsSinceLastHatch());
+          var eggs = Math.floor(this.eggs());
           if (mothers) {
             var mothersReport = 'You have ' + mothers + ' Mothers.';
           }
@@ -65,11 +78,14 @@
             var hatchMother = (
               <div>
                 <p>
-                  You have enough eggs to hatch {Math.floor(eggs / motherCost)} Mothers.
+                  You have enough eggs to hatch {this.possibleMothers()} Mothers.
                 </p>
                 <p>
                   <button onClick={this.hatch}>
                     Hatch a Mother
+                  </button>
+                  <button onClick={this.hatchAll}>
+                    Hatch All
                   </button>
                 </p>
               </div>
