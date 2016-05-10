@@ -29,9 +29,12 @@
           return { 
             eggs: 0, 
             mothers: 0,
+            gatherers: 0,
             food: 8888,
             motherCost: 8, 
             motherSpeed: 1 / 1000,
+            gathererCost: 32,
+            gathererSpeed: 1 / 8888,
             lastHatch: new Date().getTime() };
         },
         layEgg: function() {
@@ -47,6 +50,14 @@
             lastHatch: new Date().getTime()
           });
         },
+        hatchGatherer: function() {
+          this.setState({
+            eggs: this.eggs() - this.state.gathererCost,
+            food: this.food(),
+            gatherers: this.state.gatherers + 1,
+            lastHatch: new Date().getTime()
+          });
+        },
         hatchAll: function() {
           this.setState({
             eggs: this.eggs() - (this.state.motherCost * this.possibleMothers()),
@@ -55,14 +66,34 @@
             lastHatch: new Date().getTime()
           });
         },
+        hatchAllGatherers: function() {
+          this.setState({
+            eggs: this.eggs() - (this.state.gathererCost * this.possibleGatherers()),
+            food: this.food(),
+            gatherers: this.state.gatherers + this.possibleGatherers(),
+            lastHatch: new Date().getTime()
+          });
+        },
         possibleMothers: function() {
           return Math.floor(this.eggs() / this.state.motherCost);
+        },
+        possibleGatherers: function() {
+          return Math.floor(this.eggs() / this.state.gathererCost);
         },
         elapsed: function() {
           return new Date().getTime() - this.state.lastHatch;
         },
         food: function() {
           return this.state.food - this.eggs();
+        },
+        foodSinceLastHatch: function() {
+          return Math.floor(this.elapsed() * this.foodPerMillisecond());
+        },
+        foodPerMillisecond: function() {
+          return this.state.gatherers * this.state.gathererSpeed;
+        },
+        foodPerSecond: function() {
+          return Math.floor(this.foodPerMillisecond() * 1000);
         },
         eggs: function() {
           if (this.eggsSinceLastHatch() < this.state.food) {
@@ -84,19 +115,38 @@
         canHatchMother: function() {
           return this.eggs() >= this.state.motherCost;
         },
+        canHatchGatherer: function() {
+          return this.eggs() >= this.state.gathererCost;
+        },
         render: function() {
           var motherCost = this.state.motherCost;
 
           var mothers = this.state.mothers;
+          var gatherers = this.state.gatherers;
 
           var eggs = this.eggs();
           var food = this.food();
 
+          var story = (
+            <div>
+              <p>
+                You are a spider princess.
+              </p>
+              <p>
+                Your body is full of eggs.
+              </p>
+            </div>
+          )
+
           if (mothers) {
             var mothersReport = 'You have ' + mothers + ' Mothers laying ' + this.eggsPerSecond() + ' eggs per second.';
           }
+
+          if (gatherers) {
+            var gatherersReport = 'You have ' + gatherers + ' Gatherers gathering ' + this.foodPerSecond() + ' food per second.';
+          }
           var eggsReport =
-            'Your Mothers have laid ' + eggs + ' spider eggs.';
+            'You have laid ' + eggs + ' spider eggs.';
 
           var foodReport =
             'There is ' + food + ' food in the area.';
@@ -112,16 +162,39 @@
                     Hatch a Mother
                   </button>
                   <button onClick={this.hatchAll}>
-                    Hatch All
+                    Hatch All {this.possibleMothers()}
                   </button>
                 </p>
               </div>
             );
           }
 
+          if (this.canHatchGatherer()) {
+            var hatchGatherer = (
+            <div>
+              <p>
+                You have enough eggs to hatch {this.possibleGatherers()} Gatherers.
+              </p>
+              <p>
+                Gatherers bring food and other resources, which you will need in order to expand.
+              </p>
+              <p>
+                <button onClick={this.hatchGatherer}>
+                  Hatch a Gatherer
+                </button>
+                <button onClick={this.hatchAllGatherers}>
+                  Hatch All {this.possibleGatherers()}
+                </button>
+              </p>
+            </div>
+            );
+          }
+
           return (
             <div>
+              <p>{story}</p>
               <p>{mothersReport}</p>
+              <p>{gatherersReport}</p>
               <p>{eggsReport}</p>
               <p>{foodReport}</p>
               <p>
@@ -130,6 +203,7 @@
                 </button>
               </p>
               {hatchMother}
+              {hatchGatherer}
             </div>
           );
         }
