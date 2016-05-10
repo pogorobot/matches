@@ -26,7 +26,13 @@
     <script type="text/babel">
       var ExampleApplication = React.createClass({
         getInitialState: function() {
-          return { eggs: 0, mothers: 0, motherCost: 8, lastHatch: new Date().getTime() };
+          return { 
+            eggs: 0, 
+            mothers: 0,
+            food: 8888,
+            motherCost: 8, 
+            motherSpeed: 1 / 1000,
+            lastHatch: new Date().getTime() };
         },
         layEgg: function() {
           this.setState({
@@ -36,6 +42,7 @@
         hatch: function() {
           this.setState({
             eggs: this.eggs() - this.state.motherCost,
+            food: this.food(),
             mothers: this.state.mothers + 1,
             lastHatch: new Date().getTime()
           });
@@ -43,6 +50,7 @@
         hatchAll: function() {
           this.setState({
             eggs: this.eggs() - (this.state.motherCost * this.possibleMothers()),
+            food: this.food(),
             mothers: this.state.mothers + this.possibleMothers(),
             lastHatch: new Date().getTime()
           });
@@ -50,31 +58,50 @@
         possibleMothers: function() {
           return Math.floor(this.eggs() / this.state.motherCost);
         },
-        eggs: function() {
-          return this.state.eggs + this.eggsSinceLastHatch();
-        },
         elapsed: function() {
           return new Date().getTime() - this.state.lastHatch;
         },
+        food: function() {
+          return this.state.food - this.eggs();
+        },
+        eggs: function() {
+          if (this.eggsSinceLastHatch() < this.state.food) {
+            return this.state.eggs + this.eggsSinceLastHatch();
+          }
+          else {
+            return this.state.food;
+          }
+        },
         eggsSinceLastHatch: function() {
-          var elapsed = (new Date().getTime() - this.state.lastHatch);
-          var motherSpeed = 1 / 1000;
-
-          return Math.floor(elapsed * this.state.mothers * motherSpeed);
+          return Math.floor(this.elapsed() * this.eggsPerMillisecond());
+        },
+        eggsPerMillisecond: function() {
+          return this.state.mothers * this.state.motherSpeed;
+        },
+        eggsPerSecond: function() {
+          return Math.floor(this.eggsPerMillisecond() * 1000);
+        },
+        canHatchMother: function() {
+          return this.eggs() >= this.state.motherCost;
         },
         render: function() {
           var motherCost = this.state.motherCost;
 
           var mothers = this.state.mothers;
 
-          var eggs = Math.floor(this.eggs());
+          var eggs = this.eggs();
+          var food = this.food();
+
           if (mothers) {
-            var mothersReport = 'You have ' + mothers + ' Mothers.';
+            var mothersReport = 'You have ' + mothers + ' Mothers laying ' + this.eggsPerSecond() + ' eggs per second.';
           }
           var eggsReport =
             'Your Mothers have laid ' + eggs + ' spider eggs.';
 
-          if (Math.floor(eggs / motherCost) > 0) {
+          var foodReport =
+            'There is ' + food + ' food in the area.';
+
+          if (this.canHatchMother()) {
             var hatchMother = (
               <div>
                 <p>
@@ -96,6 +123,7 @@
             <div>
               <p>{mothersReport}</p>
               <p>{eggsReport}</p>
+              <p>{foodReport}</p>
               <p>
                 <button onClick={this.layEgg}>
                   Lay an Egg
