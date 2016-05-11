@@ -23,7 +23,18 @@
     <script src="react-15.0.1/build/react.js"></script>
     <script src="react-15.0.1/build/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script src="build/story.js"></script>
+    <script src="build/foodReport.js"></script>
+    <script src="build/gatherFood.js"></script>
+    <script src="build/eggsReport.js"></script>
+    <script src="build/layEgg.js"></script>
+    <script src="build/gatherersReport.js"></script>
+    <script src="build/hatchGatherer.js"></script>
+    <script src="build/mothersReport.js"></script>
+    <script src="build/hatchMother.js"></script>
     <script type="text/babel">
+
+
       var Spidervania = React.createClass({
         getInitialState: function() {
           return { 
@@ -36,6 +47,9 @@
             gathererCost: { eggs: 1, food: 4},
             gathererSpeed: 1 / 2000,
             lastHatch: new Date().getTime() };
+        },
+        canLayEgg: function() {
+          this.state.food >= this.eggCost();
         },
         layEgg: function() {
           this.setState({
@@ -178,126 +192,23 @@
           }
         },
 
-        canHatchMother: function() {
-          if (this.eggs() >= this.state.motherCost.eggs) {
-            if (this.food() >= this.state.motherCost.food) {
-              return true;
-            }
-          }
-          return false;
-        },
-        canHatchGatherer: function() {
-          if (this.eggs() >= this.state.gathererCost.eggs) {
-            if (this.food() >= this.state.gathererCost.food) {
-              return true;
-            }
-          }
-          return false;
-        },
         render: function() {
-          var mothers = this.state.mothers;
-          var gatherers = this.state.gatherers;
-
-          var eggs = this.eggs();
-          var food = this.food();
-
-          var story = (
-            <div>
-              <p>
-                You are a spider princess.
-              </p>
-              <p>
-                You are hungry.
-              </p>
-            </div>
-          )
-
-          if (mothers) {
-            var mothersReport = 'You have ' + mothers + ' Mothers eating ' + this.foodConsumedPerSecond() + ' food per second.';
-          }
-
-          if (gatherers) {
-            var gatherersReport = 'You have ' + gatherers + ' Gatherers gathering ' + this.foodProducedPerSecond() + ' food per second.';
-          }
-
-          if (eggs) {
-            var eggsReport =
-              'You have laid ' + eggs + ' spider eggs.' + this.eggRateReport();
-          }
-
-          var foodReport =
-            'There is ' + food + ' food in your belly.' + this.foodRateReport();
-
-          if (this.canHatchMother()) {
-            var hatchMother = (
-              <div>
-                <p>
-                  Mothers lay eggs automatically, as long as you keep them fed.
-                </p>
-                <p>
-                  <button onClick={this.hatch}>
-                    Hatch a Mother (Eggs: {this.state.motherCost.eggs}, Food: {this.state.motherCost.food})
-                  </button>
-                  <button onClick={this.hatchAll}>
-                    Hatch {this.possibleMothers()}
-                  </button>
-                </p>
-              </div>
-            );
-          }
-
-          if (this.canHatchGatherer()) {
-            var hatchGatherer = (
-            <div>
-              <p>
-                Your eggs are ready to hatch.
-              </p>
-              <p>
-                <button onClick={this.hatchGatherer}>
-                  Hatch a Gatherer (Eggs: {this.state.gathererCost.eggs}, Food: {this.state.gathererCost.food})
-                </button>
-                <button onClick={this.hatchAllGatherers}>
-                  Hatch {this.possibleGatherers()}
-                </button>
-              </p>
-            </div>
-            );
-          }
-
-          if (this.food() >= this.eggCost()) {
-            var layEgg = (
-              <p>
-                <button onClick={this.layEgg}>
-                  Lay an Egg (Food: {this.eggCost()})
-                </button>
-              </p>
-            )
-          }
-
-          var gatherFood = (
-            <p>
-              <button onClick={this.gatherFood}>
-                Feed
-              </button>
-            </p>
-          )
-
           return (
             <div>
-              <p>{story}</p>
-              <p>{foodReport}</p>
-              {gatherFood}
-              <p>{eggsReport}</p>
-              {layEgg}
-              <p>{gatherersReport}</p>
-              {hatchGatherer}
-              <p>{mothersReport}</p>
-              {hatchMother}
+              <Story />
+              <FoodReport food={this.food()} foodRateReport={this.foodRateReport()} />
+              <GatherFood action={this.gatherFood} />
+              <EggsReport eggs={this.eggs()} eggRateReport={this.eggRateReport()} />
+              <LayEgg food={this.state.food} action={this.layEgg} cost={this.eggCost()} />
+              <GatherersReport gatherers={this.state.gatherers} output={this.foodProducedPerSecond()} />
+              <HatchGatherer action={this.hatchGatherer} eggs={this.eggs()} food={this.food()} cost={this.state.gathererCost} />
+              <MothersReport mothers={this.state.mothers} input={this.foodConsumedPerSecond()} />
+              <HatchMother action={this.hatch} eggs={this.eggs()} food={this.food()} cost={this.state.motherCost} />
             </div>
           );
         }
       });
-      var start = new Date().getTime();
+
       setInterval(function() {
         ReactDOM.render(
           <Spidervania />,
