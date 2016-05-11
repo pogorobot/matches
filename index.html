@@ -30,17 +30,22 @@
             eggs: 0, 
             mothers: 0,
             gatherers: 0,
-            food: 8888,
+            food: 0,
             motherCost: { eggs: 1, food: 8}, 
-            motherSpeed: 1 / 3232,
-            gathererCost: { eggs: 1, food: 32},
-            gathererSpeed: 1 / 8888,
+            motherSpeed: 1 / 3000,
+            gathererCost: { eggs: 1, food: 4},
+            gathererSpeed: 1 / 2000,
             lastHatch: new Date().getTime() };
         },
         layEgg: function() {
           this.setState({
             eggs: this.state.eggs + 1,
             food: this.state.food - 1,
+          });
+        },
+        gatherFood: function() {
+          this.setState({
+            food: this.state.food + 1
           });
         },
         hatch: function() {
@@ -105,16 +110,22 @@
           }
         },
         foodSinceLastHatch: function() {
-          return this.foodProduced() - this.foodConsumed();
-        },
-        foodProduced: function() {
           return Math.floor(this.elapsed() * this.foodPerMillisecond());
         },
-        foodConsumed: function() {
-          return Math.floor(this.elapsed() * this.eggsPerMillisecond());
-        },
         foodPerMillisecond: function() {
+          return this.foodProducedPerMillisecond() - this.foodConsumedPerMillisecond();
+        },
+        foodProducedPerMillisecond: function() {
           return this.state.gatherers * this.state.gathererSpeed;
+        },
+        foodConsumedPerMillisecond: function() {
+          return this.eggsPerMillisecond();
+        },
+        foodProducedPerSecond: function() {
+          return Math.floor(this.foodProducedPerMillisecond() * 10000) / 10;
+        },
+        foodConsumedPerSecond: function() {
+          return Math.floor(this.foodConsumedPerMillisecond() * 10000) / 10;
         },
         foodPerSecond: function() {
           return Math.floor(this.foodPerMillisecond() * 10000) / 10;
@@ -178,29 +189,29 @@
                 You are a spider princess.
               </p>
               <p>
-                Your body is full of eggs.
+                You are hungry.
               </p>
             </div>
           )
 
           if (mothers) {
-            var mothersReport = 'You have ' + mothers + ' Mothers laying ' + this.eggsPerSecond() + ' eggs per second.';
+            var mothersReport = 'You have ' + mothers + ' Mothers eating ' + this.foodConsumedPerSecond() + ' food per second.';
           }
 
           if (gatherers) {
-            var gatherersReport = 'You have ' + gatherers + ' Gatherers gathering ' + this.foodPerSecond() + ' food per second.';
+            var gatherersReport = 'You have ' + gatherers + ' Gatherers gathering ' + this.foodProducedPerSecond() + ' food per second.';
           }
           var eggsReport =
-            'You have laid ' + eggs + ' spider eggs.';
+            'You have laid ' + eggs + ' spider eggs. (' + this.eggsPerSecond() + ' per second)';
 
           var foodReport =
-            'There is ' + food + ' food in the area.';
+            'There is ' + food + ' food in your belly. (' + this.foodPerSecond() + ' per second)';
 
           if (this.canHatchMother()) {
             var hatchMother = (
               <div>
                 <p>
-                  Mothers lay eggs automatically. Each consumes 1 food per second.
+                  Mothers lay eggs automatically, as long as you keep them fed.
                 </p>
                 <p>
                   <button onClick={this.hatch}>
@@ -218,7 +229,7 @@
             var hatchGatherer = (
             <div>
               <p>
-                Gatherers bring food and other resources, which you will need in order to expand.
+                Your eggs are ready to hatch.
               </p>
               <p>
                 <button onClick={this.hatchGatherer}>
@@ -242,16 +253,25 @@
             )
           }
 
+          var gatherFood = (
+            <p>
+              <button onClick={this.gatherFood}>
+                Gather Food
+              </button>
+            </p>
+          )
+
           return (
             <div>
               <p>{story}</p>
-              <p>{mothersReport}</p>
-              <p>{gatherersReport}</p>
-              <p>{eggsReport}</p>
               <p>{foodReport}</p>
+              {gatherFood}
+              <p>{eggsReport}</p>
               {layEgg}
-              {hatchMother}
+              <p>{gatherersReport}</p>
               {hatchGatherer}
+              <p>{mothersReport}</p>
+              {hatchMother}
             </div>
           );
         }
