@@ -23,15 +23,11 @@
     <script src="react-15.0.1/build/react.js"></script>
     <script src="react-15.0.1/build/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+
     <script src="build/story.js"></script>
-    <script src="build/foodReport.js"></script>
-    <script src="build/gatherFood.js"></script>
-    <script src="build/eggsReport.js"></script>
-    <script src="build/layEgg.js"></script>
-    <script src="build/gatherersReport.js"></script>
-    <script src="build/hatchGatherer.js"></script>
-    <script src="build/mothersReport.js"></script>
-    <script src="build/hatchMother.js"></script>
+    <script src="build/hatch.js"></script>
+    <script src="build/report.js"></script>
+
     <script type="text/babel">
 
 
@@ -49,12 +45,12 @@
             lastHatch: new Date().getTime() };
         },
         canLayEgg: function() {
-          this.state.food >= this.eggCost();
+          this.state.food >= this.eggCost().food;
         },
         layEgg: function() {
           this.setState({
             eggs: this.state.eggs + 1,
-            food: this.state.food - this.eggCost(),
+            food: this.state.food - this.eggCost().food,
           });
         },
         gatherFood: function() {
@@ -181,7 +177,10 @@
           return Math.floor(this.eggsPerMillisecond() * 10000) / 10;
         },
         eggCost: function() {
-          return 2;
+          return { food: 2, eggs: 0 }
+        },
+        foodCost: function() {
+          return { food: 0, eggs: 0 }
         },
         eggRateReport: function() {
           if (this.eggsPerSecond()) {
@@ -196,14 +195,17 @@
           return (
             <div>
               <Story />
-              <FoodReport food={this.food()} foodRateReport={this.foodRateReport()} />
-              <GatherFood action={this.gatherFood} />
-              <EggsReport eggs={this.eggs()} eggRateReport={this.eggRateReport()} />
-              <LayEgg food={this.state.food} action={this.layEgg} cost={this.eggCost()} />
-              <GatherersReport gatherers={this.state.gatherers} output={this.foodProducedPerSecond()} />
-              <HatchGatherer action={this.hatchGatherer} eggs={this.eggs()} food={this.food()} cost={this.state.gathererCost} />
-              <MothersReport mothers={this.state.mothers} input={this.foodConsumedPerSecond()} />
-              <HatchMother action={this.hatch} eggs={this.eggs()} food={this.food()} cost={this.state.motherCost} />
+              <Hatch action={this.gatherFood} message="Catch Food" food={this.food()} eggs={this.eggs()} cost={this.foodCost()} />
+              <Report count={this.food()} image='assets/food.jpg' />
+
+              <Hatch action={this.layEgg} message="Lay Egg" food={this.food()} eggs={this.eggs()} cost={this.eggCost()} />
+              <Report count={this.eggs()} image='assets/egg.png' />
+
+              <Hatch action={this.hatchGatherer} message="Hatch a Gatherer" eggs={this.eggs()} food={this.food()} cost={this.state.gathererCost} />
+              <Report count={this.state.gatherers} image='assets/gatherer.gif' />
+
+              <Hatch action={this.hatch} message="Hatch a Mother" eggs={this.eggs()} food={this.food()} cost={this.state.motherCost} />
+              <Report count={this.state.mothers} image='assets/mother.png' />
             </div>
           );
         }

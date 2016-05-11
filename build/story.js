@@ -1,20 +1,11 @@
 var Story = React.createClass({
-  displayName: "Story",
+  displayName: 'Story',
 
   render: function () {
     return React.createElement(
-      "div",
+      'p',
       null,
-      React.createElement(
-        "p",
-        null,
-        "You are a spider princess."
-      ),
-      React.createElement(
-        "p",
-        null,
-        "You are hungry."
-      )
+      React.createElement('img', { src: 'assets/stare.jpg' })
     );
   }
 });
