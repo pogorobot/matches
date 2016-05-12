@@ -79,6 +79,10 @@ ul.nav {
   text-decoration: none;
 }
 
+.nav a.active {
+  background-color: #fed;
+}
+
 .nav a:hover {
   background-color: #aaa;
 }
