@@ -3,18 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>The Founding of Spidervania</title>
-    <link rel="stylesheet" href="react-15.0.1/examples/shared/css/base.css" />
+    <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
     <h1>The Founding of Spidervania</h1>
     <div id="container">
       <p>
-        To install React, follow the instructions on
-        <a href="https://github.com/facebook/react/">GitHub</a>.
-      </p>
-      <p>
-        If you can see this, React is <strong>not</strong> working right.
-        If you checked out the source from GitHub make sure to run <code>grunt</code>.
+        (oooo____oooo;)
       </p>
     </div>
     <h4>&copy; 2016 Jade Eklund</h4>
@@ -27,6 +22,7 @@
     <script src="build/story.js"></script>
     <script src="build/hatch.js"></script>
     <script src="build/report.js"></script>
+    <script src="build/nav.js"></script>
 
     <script type="text/babel">
 
@@ -194,6 +190,7 @@
         render: function() {
           return (
             <div>
+              <NavBar />
               <Story />
               <Hatch action={this.gatherFood} message="Catch Food" food={this.food()} eggs={this.eggs()} cost={this.foodCost()} />
               <Report count={this.food()} image='assets/food.jpg' />
