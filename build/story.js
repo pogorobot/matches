@@ -1,16 +1,27 @@
 var Story = React.createClass({
   displayName: "Story",
 
+  getInitialState: function () {
+    return {
+      nextLine: "Hi there ^^^^____^^^^;",
+      response: "Um, hi."
+    };
+  },
   render: function () {
     return React.createElement(
       "div",
       null,
       React.createElement(Portrait, null),
-      React.createElement(Dialogue, null),
-      React.createElement(Answer, { choice: "Um, hi.", action: this.answer })
+      React.createElement(Dialogue, { line: this.state.nextLine }),
+      React.createElement(Answer, { choice: this.state.response, action: this.answer })
     );
   },
-  answer: function () {}
+  answer: function () {
+    this.setState({
+      nextLine: "0000____0000",
+      response: "lol"
+    });
+  }
 });
 
 var Portrait = React.createClass({
@@ -32,7 +43,7 @@ var Dialogue = React.createClass({
     return React.createElement(
       "p",
       null,
-      "Hi there ^^^^____^^^^;"
+      this.props.line
     );
   }
 });
