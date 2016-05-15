@@ -33,14 +33,13 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  border-bottom: 1px solid #ddd;
   font-size: 2.5em;
   font-weight: bold;
-  margin: 0 0 15px;
   padding: 0;
 }
 
 h2 {
+  margin: 0 0 15px;
   border-bottom: 1px solid #eee;
   font-size: 2em;
 }
@@ -59,6 +58,18 @@ p, ul {
 
 ul {
   padding-left: 30px;
+}
+
+
+#container {
+  width: 800px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid gray;
+  border-top: none;
+  border-bottom: none;
+  box-shadow: 3px 0px 20px #333;
+  padding: 10px;
 }
 
 ul.nav {
@@ -85,4 +96,19 @@ ul.nav {
 
 .nav a:hover {
   background-color: #aaa;
+}
+
+div.webs {
+  display: block;
+  padding: 8px;
+  overflow: hidden;
+  max-width: 512px;
+}
+
+img.tile {
+  float: left;
+}
+
+img.tile:hover {
+  opacity: 0.666;
 }
