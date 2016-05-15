@@ -8,10 +8,11 @@ var NavBar = React.createClass({
   render: function() {
     return (
       <ul className="nav">
-        <NavButton name="Eggs" active={this.isActive("Eggs")} action={this.activate} />
-        <NavButton name="Webs" active={this.isActive("Webs")} action={this.activate} />
-        <NavButton name="Friends" active={this.isActive("Friends")} action={this.activate} />
-        <NavButton name="Family" active={this.isActive("Family")} action={this.activate} />
+        <NavButton name="Foundation" active={this.isActive("Foundation")} action={this.activate} />
+        <NavButton name="Catacombs" active={this.isActive("Catacombs")} action={this.activate} />
+        <NavButton name="Sanctuary" active={this.isActive("Sanctuary")} action={this.activate} />
+        <NavButton name="Roof" active={this.isActive("Roof")} action={this.activate} />
+        <NavButton name="Tower" active={this.isActive("Tower")} action={this.activate} />
       </ul>
     );
   },

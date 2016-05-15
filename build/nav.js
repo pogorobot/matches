@@ -11,10 +11,11 @@ var NavBar = React.createClass({
     return React.createElement(
       "ul",
       { className: "nav" },
-      React.createElement(NavButton, { name: "Eggs", active: this.isActive("Eggs"), action: this.activate }),
-      React.createElement(NavButton, { name: "Webs", active: this.isActive("Webs"), action: this.activate }),
-      React.createElement(NavButton, { name: "Friends", active: this.isActive("Friends"), action: this.activate }),
-      React.createElement(NavButton, { name: "Family", active: this.isActive("Family"), action: this.activate })
+      React.createElement(NavButton, { name: "Foundation", active: this.isActive("Foundation"), action: this.activate }),
+      React.createElement(NavButton, { name: "Catacombs", active: this.isActive("Catacombs"), action: this.activate }),
+      React.createElement(NavButton, { name: "Sanctuary", active: this.isActive("Sanctuary"), action: this.activate }),
+      React.createElement(NavButton, { name: "Roof", active: this.isActive("Roof"), action: this.activate }),
+      React.createElement(NavButton, { name: "Steeple", active: this.isActive("Steeple"), action: this.activate })
     );
   },
   activate: function (name) {
