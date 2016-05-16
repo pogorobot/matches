@@ -30,11 +30,31 @@ var Tile = React.createClass({
     };
   },
   render: function () {
+    if (this.readyToHatch()) {
+      this.hatch();
+    }
     return React.createElement("img", { className: "tile", onClick: this.layEgg, src: this.state.image });
   },
   layEgg: function () {
     this.setState({
-      image: "assets/egg.png"
+      image: "assets/egg.png",
+      laidAt: new Date().getTime()
     });
+  },
+  readyToHatch: function () {
+    if (this.state.laidAt) {
+      return new Date().getTime() - this.state.laidAt > this.timeToHatch();
+    } else {
+      return false;
+    }
+  },
+  hatch: function () {
+    this.setState({
+      image: "assets/hatching.png",
+      laidAt: false
+    });
+  },
+  timeToHatch: function () {
+    return Math.random() * 10000 + 1000;
   }
 });
