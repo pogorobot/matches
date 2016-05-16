@@ -20,8 +20,8 @@ var Story = React.createClass({
   },
   answer: function () {
     this.setState({
-      nextLine: "2501____1052",
-      response: "........"
+      nextLine: "8888____8888",
+      response: "Your wish is my comedy."
     });
   }
 });
@@ -33,7 +33,7 @@ var Setting = React.createClass({
     return React.createElement(
       "p",
       null,
-      React.createElement("img", { src: "assets/setting.jpg" })
+      React.createElement("img", { className: "setting", src: "assets/eye.jpg" })
     );
   }
 });
@@ -48,27 +48,22 @@ var Description = React.createClass({
       React.createElement(
         "p",
         null,
-        "Okay, friend."
+        "Okay, friend. 2"
       ),
       React.createElement(
         "p",
         null,
-        "I know you're real. I'm not afraid."
+        "I know you're real. I'm not afraid. 5"
       ),
       React.createElement(
         "p",
         null,
-        "I want answers. Or, better yet, the truth."
+        "I want answers. Or, better yet, the truth. 0"
       ),
       React.createElement(
         "p",
         null,
-        "I am prepared to offer you my soul."
-      ),
-      React.createElement(
-        "p",
-        null,
-        "It's a tasty one. I know. I've been practicing."
+        "I am prepared to offer you my soul. 1"
       )
     );
   }

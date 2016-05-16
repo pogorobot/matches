@@ -18,8 +18,8 @@ var Story = React.createClass({
   },
   answer: function() {
     this.setState({
-      nextLine: "2501____1052",
-      response: "........"
+      nextLine: "8888____8888",
+      response: "Your wish is my comedy."
     });
   },
 });
@@ -28,7 +28,7 @@ var Setting = React.createClass({
   render: function() {
     return (
       <p>
-        <img src='assets/setting.jpg' />
+        <img className="setting" src='assets/eye.jpg' />
       </p>
     );
   }
@@ -39,19 +39,16 @@ var Description = React.createClass({
     return (
       <div>
         <p>
-          Okay, friend.
+          Okay, friend. 2
         </p>
         <p>
-          I know you're real. I'm not afraid.
+          I know you're real. I'm not afraid. 5
         </p>
         <p>
-          I want answers. Or, better yet, the truth.
+          I want answers. Or, better yet, the truth. 0
         </p>
         <p>
-          I am prepared to offer you my soul.
-        </p>
-        <p>
-          It's a tasty one. I know. I've been practicing.
+          I am prepared to offer you my soul. 1
         </p>
       </div>
     );
