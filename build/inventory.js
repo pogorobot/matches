@@ -158,8 +158,6 @@ var Inventory = React.createClass({
     return React.createElement(
       'div',
       null,
-      React.createElement(NavBar, null),
-      React.createElement(Story, null),
       React.createElement(Hatch, { action: this.gatherFood, message: 'Catch Food', food: this.food(), eggs: this.eggs(), cost: this.foodCost() }),
       React.createElement(Report, { count: this.food(), image: 'assets/food.jpg' }),
       React.createElement(Hatch, { action: this.layEgg, message: 'Lay Egg', food: this.food(), eggs: this.eggs(), cost: this.eggCost() }),

@@ -161,8 +161,6 @@ var Inventory = React.createClass({
   render: function() {
     return (
       <div>
-        <NavBar />
-        <Story />
         <Hatch action={this.gatherFood} message="Catch Food" food={this.food()} eggs={this.eggs()} cost={this.foodCost()} />
         <Report count={this.food()} image='assets/food.jpg' />
 
