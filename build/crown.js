@@ -13,13 +13,19 @@ var Crown = React.createClass({
       React.createElement(
         "ul",
         { className: "char-select" },
-        React.createElement(PrincessFaith, null),
         React.createElement(PrincessGrace, null),
-        React.createElement(PrincessHarmony, null),
+        React.createElement(PrincessRose, null),
+        React.createElement(PrincessFaith, null),
         React.createElement(PrincessLucy, null),
-        React.createElement(PrincessRose, null)
+        React.createElement(PrincessHarmony, null)
       )
     );
+  },
+
+  crown: function (princess) {
+    this.setState({
+      queen: princess
+    });
   }
 });
 

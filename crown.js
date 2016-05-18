@@ -4,14 +4,20 @@ var Crown = React.createClass({
       <div>
         <h3>Choose Your Princess</h3>
         <ul className="char-select">
-          <PrincessFaith />
           <PrincessGrace />
-          <PrincessHarmony />
-          <PrincessLucy />
           <PrincessRose />
+          <PrincessFaith />
+          <PrincessLucy />
+          <PrincessHarmony />
         </ul>
       </div>
     );
+  },
+
+  crown: function(princess) {
+    this.setState({
+      queen: princess
+    });
   }
 });
 
