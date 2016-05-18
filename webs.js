@@ -1,10 +1,25 @@
 var Webs = React.createClass({
+  countChicken: function() {
+    this.setState({
+      eggs: this.state.eggs + 1
+    });
+    if (this.state.eggs >= 8) {
+      this.props.action();
+    }
+  },
+  getInitialState: function() {
+    var action = this.countChicken;
+    return ({
+      board: this.board().map(function(tile) {
+          return (<Tile image={tile.image} key={tile.key} action={action} />);
+        }),
+      eggs: 0
+    });
+  },
   render: function() {
     return (
       <div className="webs">
-        {this.board().map(function(tile) {
-          return (<Tile image={tile.image} key={tile.key} />);
-        })}
+        {this.state.board}
       </div>
     );
   },
@@ -16,7 +31,7 @@ var Webs = React.createClass({
       }
     }
     return list;
-  }
+  },
 });
 
 var Tile = React.createClass({
@@ -34,6 +49,7 @@ var Tile = React.createClass({
     );
   },
   layEgg: function() {
+    this.props.action();
     this.setState({
       image: "assets/egg.png",
       laidAt: new Date().getTime()

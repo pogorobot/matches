@@ -14,17 +14,19 @@ var Hatch = React.createClass({
     }
   },
   canHatch: function() {
-    if (this.props.eggs >= this.props.cost.eggs) {
-      if (this.props.food >= this.props.cost.food) {
-        return true;
+    for (var property in this.props.cost) {
+      if (this.props.cost.hasOwnProperty(property)) {
+        if (this.props[property] < this.props.cost[property]) {
+          return false;
+        }
       }
     }
-    return false;
+    return true;
   },
   cost: function() {
     if (this.props.cost.eggs) {
       if (this.props.cost.food) {
-        return " (Eggs: " + this.props.cost.eggs + " , Food: " + this.props.cost.food + ")";
+        return " (Eggs: " + this.props.cost.eggs + ", Food: " + this.props.cost.food + ")";
       }
       else {
         return " (Eggs: " + this.props.cost.eggs + ")";

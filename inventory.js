@@ -5,15 +5,10 @@ var Inventory = React.createClass({
       eggs: 0,
       mothers: 0,
       gatherers: 0,
-      motherCost: { eggs: 2, food: 8},
-      gathererCost: { eggs: 1, food: 4},
       lastHatch: new Date().getTime() };
   },
 
   //Logic
-  elapsed: function() {
-    return new Date().getTime() - this.state.lastHatch;
-  },
 
   count: function(resource) {
     var raw = this.state[resource] + this.sinceLastHatch(resource);
@@ -26,7 +21,7 @@ var Inventory = React.createClass({
   },
 
   sinceLastHatch: function(resource) {
-    return Math.floor(this.elapsed() * this.perMillisecond(resource));
+    return Math.round(this.elapsed() * this.perMillisecond(resource));
   },
 
   perMillisecond: function(resource) {
@@ -34,8 +29,8 @@ var Inventory = React.createClass({
   },
 
   producedPerMillisecond: function(resource) {
-    if (this.parent(resource)) {
-      return this.count(this.parent(resource)) * this.production(this.parent(resource));
+    if (this.producer(resource)) {
+      return this.count(this.producer(resource)) * this.production(this.producer(resource));
     }
     else {
       return 0;
@@ -43,24 +38,54 @@ var Inventory = React.createClass({
   },
 
   consumedPerMillisecond: function(resource) {
-    if (this.predator(resource)) {
-      return this.count(this.predator(resource)) * this.consumption(this.predator(resource));
+    if (this.consumer(resource)) {
+      return this.count(this.consumer(resource)) * this.consumption(this.consumer(resource));
     }
     else {
       return 0;
     }
   },
 
+  hatch: function(resource) {
+    if (this.count('food') > 88) {
+      this.props.action();
+    }
+
+    paid = this.pay(this.cost(resource));
+    paid[resource] += 1;
+
+    this.setState({
+      eggs: paid.eggs,
+      food: paid.food,
+      mothers: paid.mothers,
+      gatherers: paid.gatherers,
+      lastHatch: new Date().getTime()
+    });
+  },
+
+  pay: function(cost) {
+    stockpile = this.stockpile();
+    for (var property in cost) {
+      if (cost.hasOwnProperty(property)) {
+        stockpile[property] -= cost[property];
+      }
+    }
+    return stockpile;
+  },
+
+  elapsed: function() {
+    return new Date().getTime() - this.state.lastHatch;
+  },
 
   //DATA
-  parent: function(resource) {
+  producer: function(resource) {
     return {
       eggs: 'mothers',
       food: 'gatherers'
     }[resource];
   },
 
-  predator: function(resource) {
+  consumer: function(resource) {
     return {
       food: 'mothers'
     }[resource];
@@ -81,99 +106,39 @@ var Inventory = React.createClass({
     }[resource];
   },
 
+  cost: function(resource) {
+    return {
+      eggs: {food: 2},
+      food: {},
+      mothers: {eggs: 2, food: 8},
+      gatherers: {eggs: 1, food: 4}
+    }[resource];
+  },
 
-  //Eggs
+  //Legacy
   layEgg: function() {
-    this.setState({
-      eggs: this.state.eggs + 1,
-      food: this.state.food - this.eggCost().food,
-    });
-  },
-
-  eggs: function() {
-    return this.count('eggs');
-  },
-
-  eggCost: function() {
-    return { food: 2, eggs: 0 }
-  },
-
-  //Food
-
-  food: function() {
-    return this.count('food');
+    this.hatch('eggs');
   },
 
   gatherFood: function() {
-    this.setState({
-      food: this.state.food + 1
-    });
+    this.hatch('food');
   },
 
-  foodCost: function() {
-    return { food: 0, eggs: 0 }
+  hatchMother: function() {
+    this.hatch('mothers');
   },
 
-  //Mothers
-  hatch: function() {
-    this.setState({
-      eggs: this.eggs() - this.state.motherCost.eggs,
-      food: this.food() - this.state.motherCost.food,
-      mothers: this.state.mothers + 1,
-      lastHatch: new Date().getTime()
-    });
-  },
-
-  possibleMothers: function() {
-    if (this.eggs() / this.state.motherCost.eggs < this.food() / this.state.motherCost.food) {
-      return Math.floor(this.eggs() / this.state.motherCost.eggs);
-    }
-    else {
-      return Math.floor(this.food() / this.state.motherCost.food);
-    }
-  },
-
-  hatchAll: function() {
-    this.setState({
-      eggs: this.eggs() - (this.state.motherCost.eggs * this.possibleMothers()),
-      food: this.food() - (this.state.motherCost.food * this.possibleMothers()),
-      mothers: this.state.mothers + this.possibleMothers(),
-      lastHatch: new Date().getTime()
-    });
-  },
-
-  //Gatherers
   hatchGatherer: function() {
-    this.setState({
-      eggs: this.eggs() - this.state.gathererCost.eggs,
-      food: this.food() - this.state.gathererCost.food,
-      gatherers: this.state.gatherers + 1,
-      lastHatch: new Date().getTime()
-    });
-  },
-  hatchAllGatherers: function() {
-    this.setState({
-      eggs: this.eggs() - (this.state.gathererCost.eggs * this.possibleGatherers()),
-      food: this.food() - (this.state.gathererCost.food * this.possibleGatherers()),
-      gatherers: this.state.gatherers + this.possibleGatherers(),
-      lastHatch: new Date().getTime()
-    });
-  },
-  possibleGatherers: function() {
-    if (this.eggs() / this.state.gathererCost.eggs < this.food() / this.state.gathererCost.food) {
-      return Math.floor(this.eggs() / this.state.gathererCost.eggs);
-    }
-    else {
-      return Math.floor(this.food() / this.state.gathererCost.food);
-    }
+    this.hatch('gatherers');
   },
 
+  //Render
   stockpile: function() {
     return {
-      food: this.food(),
-      eggs: this.eggs(),
-      gatherers: this.state.gatherers,
-      mothers: this.state.mothers
+      food: this.count('food'),
+      eggs: this.count('eggs'),
+      gatherers: this.count('gatherers'),
+      mothers: this.count('mothers')
     };
   },
 
@@ -181,25 +146,25 @@ var Inventory = React.createClass({
     return {
       food: {
         action: this.gatherFood,
-        cost: this.foodCost(),
+        cost: this.cost('food'),
         message: "Catch Food",
         image: 'assets/food.png'
       },
       eggs: {
         action: this.layEgg,
-        cost: this.eggCost(),
+        cost: this.cost('eggs'),
         message: "Lay Egg",
         image: 'assets/egg.png'
       },
       gatherers: {
         action: this.hatchGatherer,
-        cost: this.state.gathererCost,
+        cost: this.cost('gatherers'),
         message: "Hatch a Gatherer",
         image: 'assets/gatherer.gif'
       },
       mothers: {
-        action: this.hatch,
-        cost: this.state.motherCost,
+        action: this.hatchMother,
+        cost: this.cost('mothers'),
         message: "Hatch a Mother",
         image: 'assets/mother.png'
       }
@@ -222,17 +187,6 @@ var Inventory = React.createClass({
 var Resource = React.createClass({
   count: function() {
     return this.props.stockpile[this.props.name];
-  },
-  afterHatching: function() {
-    var after = {
-      food: this.props.stockpile.food - this.props.params.cost.food,
-      eggs: this.props.stockpile.eggs - this.props.params.cost.eggs,
-      gatherers: this.props.stockpile.gatherers - this.props.params.cost.gatherers,
-      mothers: this.props.stockpile.mothers - this.props.params.cost.mothers
-    };
-
-    after[this.props.name] += 1;
-    return after;
   },
   render: function() {
     return (
