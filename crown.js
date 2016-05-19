@@ -13,12 +13,21 @@ var Crown = React.createClass({
         <Sigil />
         <h3>Hear the Cry of the Spiders</h3>
         <ul className="char-select">
-          <PrincessGrace />
           <PrincessRose />
-          <PrincessFaith />
-          <PrincessLucy />
-          <PrincessHarmony />
         </ul>
+        <h3>Why?</h3>
+        <p>Because her mother makes everything dumb and confusing.</p>
+        <h2>Good Answer</h2>
+        <p>Oh, really? What makes it "Good"?</p>
+        <h3>Your Breath</h3>
+        <p>I take it you somehow benefit from the physical manifestation of my desires?</p>
+        <h2>You Got It</h2>
+        <p>May I further assume that by manifesting my own desires, I strengthen yours? </p>
+        <h3>That Would Be A Wonderful Thing To Assume</h3>
+        <p>Very Well. I Put It To You That I Am Incredibly Gay.</p>
+        <h2>CHEATER</h2>
+        <img className="spider" src="assets/vriska.gif" />
+        <img className="spider" src="assets/kanaya.gif" />
       </div>
     );
   },
@@ -54,7 +63,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img src="assets/lilith.png" />;
+    return <img src="assets/aradia.png" />;
   }
 });
 
@@ -70,7 +79,7 @@ var PrincessGrace = React.createClass({
 var PrincessRose = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Rose, Who Longs For Clarity</li>
+      <li onClick={this.props.action}>Rose, Who Longs For Clarity, Hates Her Mother</li>
     )
   }
 });

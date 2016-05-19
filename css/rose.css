@@ -20,3 +20,8 @@ body {
 #container {
   background-color: #dcf;
 }
+
+.spider {
+  max-width: 512px;
+  border: 1px dotted purple;
+}
