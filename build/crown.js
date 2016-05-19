@@ -59,7 +59,22 @@ var Crown = React.createClass({
         null,
         "WATCH"
       ),
-      React.createElement("iframe", { width: "512", height: "258", src: "https://www.youtube.com/embed/_jFzDbsGK54", frameborder: "0", allowfullscreen: true })
+      React.createElement("iframe", { width: "512", height: "258", src: "https://www.youtube.com/embed/_jFzDbsGK54", frameborder: "0", allowfullscreen: true }),
+      React.createElement(
+        "p",
+        null,
+        "I think I am beginning to see."
+      ),
+      React.createElement(
+        "h3",
+        null,
+        "You see nothing."
+      ),
+      React.createElement(
+        "p",
+        null,
+        "That is kind of what I meant."
+      )
     );
   },
 
@@ -106,7 +121,7 @@ var Sigil = React.createClass({
   displayName: "Sigil",
 
   render: function () {
-    return React.createElement("img", { className: "sigil", src: "assets/aradia.png" });
+    return React.createElement("img", { className: "sigil", src: "assets/setting.jpg" });
   }
 });
 

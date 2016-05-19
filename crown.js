@@ -23,6 +23,10 @@ var Crown = React.createClass({
         <p>What can I do about it?</p>
         <h2>WATCH</h2>
         <iframe width="512" height="258" src="https://www.youtube.com/embed/_jFzDbsGK54" frameborder="0" allowfullscreen></iframe>
+        <p>I think I am beginning to see.</p>
+        <h3>You see nothing.</h3>
+        <p>That is kind of what I meant.</p>
+        
       </div>
     );
   },
@@ -58,7 +62,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img className="sigil" src="assets/aradia.png" />;
+    return <img className="sigil" src="assets/setting.jpg" />;
   }
 });
 
