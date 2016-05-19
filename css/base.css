@@ -1,8 +1,8 @@
 body {
   background: #fff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
+  font-family: 'Arquitecta', sans-serif, georgia, serif;
+  font-size: 20px;
+  line-height: 1;
   margin: 0;
   padding: 30px;
 }
@@ -26,14 +26,27 @@ code {
   padding: 0px 5px;
 }
 
+@font-face {
+  font-family: "Quadrat";
+  src: url(quadrat.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Arquitecta";
+  src: url(arquitecta.ttf);
+}
+
 h1, h2, h3, h4 {
+  font-family: 'Quadrat', serif, futura, helvetica, arial, sans-serif;
+  line-height: 1.4;
   font-weight: bold;
   margin: 0 0 15px;
   padding: 0;
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: bold;
   padding: 0;
 }
@@ -41,15 +54,15 @@ h1 {
 h2 {
   margin: 0 0 15px;
   border-bottom: 1px solid #eee;
-  font-size: 2em;
+  font-size: 1.3em;
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 p, ul {

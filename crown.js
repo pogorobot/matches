@@ -63,7 +63,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img src="assets/aradia.png" />;
+    return <img src="assets/setting.jpg" />;
   }
 });
 

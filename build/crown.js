@@ -127,7 +127,7 @@ var Sigil = React.createClass({
   displayName: "Sigil",
 
   render: function () {
-    return React.createElement("img", { src: "assets/aradia.png" });
+    return React.createElement("img", { src: "assets/setting.jpg" });
   }
 });
 
