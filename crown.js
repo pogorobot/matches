@@ -12,13 +12,20 @@ var Crown = React.createClass({
       <div>
         <Sigil />
         <h3>Hear the Cry of the Spiders</h3>
+        <img className="anchor" src="assets/setting.jpg" />
         <ul className="char-select">
-          <PrincessGrace />
-          <PrincessRose />
-          <PrincessFaith />
-          <PrincessLucy />
           <PrincessHarmony />
         </ul>
+        <h3>Why?</h3>
+        <p>Because I see myself in everyone.</p>
+        <h2>Do You Love Yourself, Then?</h2>
+        <p>More than anything. ::::)</p>
+        <h2>GAAAAAY</h2>
+        <img className="anchor" src="assets/kurt.jpg" />
+        <img className="anchor" src="assets/vriska.gif" />
+        <img className="anchor" src="assets/fiona.jpg" />
+        <img className="anchor" src="assets/willow.png" />
+        <img className="anchor" src="assets/jade.gif" />
       </div>
     );
   },
@@ -54,7 +61,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img src="assets/lilith.png" />;
+    return <img src="assets/aradia.png" />;
   }
 });
 
@@ -95,7 +102,7 @@ var PrincessLucy = React.createClass({
 var PrincessHarmony = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Harmony, Who Longs For Compassion</li>
+      <li onClick={this.props.action}>Harmony, Who Longs For Compassion, Loves Absolutely Everyone</li>
     );
   }
 });

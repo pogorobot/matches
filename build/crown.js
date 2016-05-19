@@ -1,5 +1,5 @@
 var Crown = React.createClass({
-  displayName: 'Crown',
+  displayName: "Crown",
 
   getInitialState() {
     return {
@@ -11,23 +11,50 @@ var Crown = React.createClass({
       return this.queen();
     }
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(Sigil, null),
       React.createElement(
-        'h3',
+        "h3",
         null,
-        'Hear the Cry of the Spiders'
+        "Hear the Cry of the Spiders"
+      ),
+      React.createElement("img", { className: "anchor", src: "assets/setting.jpg" }),
+      React.createElement(
+        "ul",
+        { className: "char-select" },
+        React.createElement(PrincessHarmony, null)
       ),
       React.createElement(
-        'ul',
-        { className: 'char-select' },
-        React.createElement(PrincessGrace, null),
-        React.createElement(PrincessRose, null),
-        React.createElement(PrincessFaith, null),
-        React.createElement(PrincessLucy, null),
-        React.createElement(PrincessHarmony, null)
-      )
+        "h3",
+        null,
+        "Why?"
+      ),
+      React.createElement(
+        "p",
+        null,
+        "Because I see myself in everyone."
+      ),
+      React.createElement(
+        "h2",
+        null,
+        "Do You Love Yourself, Then?"
+      ),
+      React.createElement(
+        "p",
+        null,
+        "More than anything. ::::)"
+      ),
+      React.createElement(
+        "h2",
+        null,
+        "GAAAAAY"
+      ),
+      React.createElement("img", { className: "anchor", src: "assets/kurt.jpg" }),
+      React.createElement("img", { className: "anchor", src: "assets/vriska.gif" }),
+      React.createElement("img", { className: "anchor", src: "assets/fiona.jpg" }),
+      React.createElement("img", { className: "anchor", src: "assets/willow.png" }),
+      React.createElement("img", { className: "anchor", src: "assets/jade.gif" })
     );
   },
 
@@ -71,69 +98,69 @@ var Crown = React.createClass({
 });
 
 var Sigil = React.createClass({
-  displayName: 'Sigil',
+  displayName: "Sigil",
 
   render: function () {
-    return React.createElement('img', { src: 'assets/lilith.png' });
+    return React.createElement("img", { src: "assets/aradia.png" });
   }
 });
 
 var PrincessGrace = React.createClass({
-  displayName: 'PrincessGrace',
+  displayName: "PrincessGrace",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Grace, Who Longs For Purpose'
+      "Grace, Who Longs For Purpose"
     );
   }
 });
 
 var PrincessRose = React.createClass({
-  displayName: 'PrincessRose',
+  displayName: "PrincessRose",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Rose, Who Longs For Clarity'
+      "Rose, Who Longs For Clarity"
     );
   }
 });
 
 var PrincessFaith = React.createClass({
-  displayName: 'PrincessFaith',
+  displayName: "PrincessFaith",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Faith, Who Longs For Hope'
+      "Faith, Who Longs For Hope"
     );
   }
 });
 
 var PrincessLucy = React.createClass({
-  displayName: 'PrincessLucy',
+  displayName: "PrincessLucy",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Lucy, Who Longs For Justice'
+      "Lucy, Who Longs For Justice"
     );
   }
 });
 
 var PrincessHarmony = React.createClass({
-  displayName: 'PrincessHarmony',
+  displayName: "PrincessHarmony",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Harmony, Who Longs For Compassion'
+      "Harmony, Who Longs For Compassion, Loves Absolutely Everyone"
     );
   }
 });
