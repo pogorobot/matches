@@ -14,11 +14,15 @@ var Crown = React.createClass({
         <h3>Hear the Cry of the Spiders</h3>
         <ul className="char-select">
           <PrincessGrace />
-          <PrincessRose />
-          <PrincessFaith />
-          <PrincessLucy />
-          <PrincessHarmony />
         </ul>
+        <h3>Why?</h3>
+        <p>Because her mother knows exactly what is going to happen, and what she, Grace, can do about it.</p>
+        <h2>Good Answer.</h2>
+        <p>What is going to happen?</p>
+        <h3>Overwhelming Violence.</h3>
+        <p>What can I do about it?</p>
+        <h2>WATCH</h2>
+        <iframe width="512" height="258" src="https://www.youtube.com/embed/_jFzDbsGK54" frameborder="0" allowfullscreen></iframe>
       </div>
     );
   },
@@ -54,7 +58,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img src="assets/lilith.png" />;
+    return <img className="sigil" src="assets/aradia.png" />;
   }
 });
 
@@ -62,7 +66,7 @@ var Sigil = React.createClass({
 var PrincessGrace = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Grace, Who Longs For Purpose</li>
+      <li onClick={this.props.action}>Grace, Who Longs For Purpose, Loves Her Mother</li>
     );
   }
 });
@@ -70,7 +74,7 @@ var PrincessGrace = React.createClass({
 var PrincessRose = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Rose, Who Longs For Clarity</li>
+      <li onClick={this.props.action}>Rose, Who Longs For Clarity, Hates Her Mother</li>
     )
   }
 });
@@ -78,7 +82,7 @@ var PrincessRose = React.createClass({
 var PrincessFaith = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Faith, Who Longs For Hope</li>
+      <li onClick={this.props.action}>Faith, Who Longs For Hope, Loves Her Father</li>
     );
   }
 });
@@ -86,7 +90,7 @@ var PrincessFaith = React.createClass({
 var PrincessLucy = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Lucy, Who Longs For Justice</li>
+      <li onClick={this.props.action}>Lucy, Who Longs For Justice, Hates Her Father</li>
     );
   }
 });
@@ -95,7 +99,7 @@ var PrincessLucy = React.createClass({
 var PrincessHarmony = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Harmony, Who Longs For Compassion</li>
+      <li onClick={this.props.action}>Harmony, Who Longs For Compassion, Loves Absolutely Everyone</li>
     );
   }
 });

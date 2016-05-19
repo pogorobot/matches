@@ -20,3 +20,8 @@ body {
 #container {
   background-color: #efe;
 }
+
+.sigil {
+  border-bottom: 1px dotted green;
+  max-width: 512px;
+}
