@@ -13,12 +13,18 @@ var Crown = React.createClass({
         <Sigil />
         <h3>Hear the Cry of the Spiders</h3>
         <ul className="char-select">
-          <PrincessGrace />
-          <PrincessRose />
-          <PrincessFaith />
           <PrincessLucy />
-          <PrincessHarmony />
         </ul>
+        <h3>Why?</h3>
+        <p>Because that piece of shit left me in Hell to rot.</p>
+        <h2>You Are Angry.</h2>
+        <p>Damn right I Am Angry.</p>
+        <h3>Your Blood Is Hot.</h3>
+        <p>Oh nooo. Will I attract vampires?</p>
+        <h2>TRICK</h2>
+        <img className="vampire" src="assets/trick.jpg" />
+        <img className="witch" src="assets/willow.png" />
+        <img className="vampire" src="assets/jubal.jpg" />
       </div>
     );
   },
@@ -43,7 +49,7 @@ var Crown = React.createClass({
     } else if (this.state.queen == 'Faith') {
       return <Faith />;
     } else if (this.state.queen == 'Lucy') {
-      return <Lucy />;
+      return <Lucy action={this.lucy} />;
     } else if (this.state.queen == 'Harmony') {
       return <Harmony />;
     } else {
@@ -54,7 +60,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img src="assets/lilith.png" />;
+    return <img src="assets/aradia.png" />;
   }
 });
 
@@ -86,7 +92,7 @@ var PrincessFaith = React.createClass({
 var PrincessLucy = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Lucy, Who Longs For Justice</li>
+      <li onClick={this.props.action}>Lucy, Who Longs For Justice, Hates Her Father</li>
     );
   }
 });

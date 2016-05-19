@@ -20,3 +20,13 @@ body {
 #container {
   background-color: #fee;
 }
+
+.vampire {
+  max-width: 512px;
+  border: 1px dotted red;
+}
+
+.witch {
+  max-width: 512px;
+  border-bottom: 1px dotted blue;
+}

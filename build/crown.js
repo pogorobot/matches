@@ -1,5 +1,5 @@
 var Crown = React.createClass({
-  displayName: 'Crown',
+  displayName: "Crown",
 
   getInitialState() {
     return {
@@ -11,23 +11,57 @@ var Crown = React.createClass({
       return this.queen();
     }
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(Sigil, null),
       React.createElement(
-        'h3',
+        "h3",
         null,
-        'Hear the Cry of the Spiders'
+        "Hear the Cry of the Spiders"
       ),
       React.createElement(
-        'ul',
-        { className: 'char-select' },
-        React.createElement(PrincessGrace, null),
-        React.createElement(PrincessRose, null),
-        React.createElement(PrincessFaith, null),
-        React.createElement(PrincessLucy, null),
-        React.createElement(PrincessHarmony, null)
-      )
+        "ul",
+        { className: "char-select" },
+        React.createElement(PrincessLucy, null)
+      ),
+      React.createElement(
+        "h3",
+        null,
+        "Why?"
+      ),
+      React.createElement(
+        "p",
+        null,
+        "Because that piece of shit left me in Hell to rot."
+      ),
+      React.createElement(
+        "h2",
+        null,
+        "You Are Angry."
+      ),
+      React.createElement(
+        "p",
+        null,
+        "Damn right I Am Angry."
+      ),
+      React.createElement(
+        "h3",
+        null,
+        "Your Blood Is Hot."
+      ),
+      React.createElement(
+        "p",
+        null,
+        "Oh nooo. Will I attract vampires?"
+      ),
+      React.createElement(
+        "h2",
+        null,
+        "TRICK"
+      ),
+      React.createElement("img", { className: "vampire", src: "assets/trick.jpg" }),
+      React.createElement("img", { className: "witch", src: "assets/willow.png" }),
+      React.createElement("img", { className: "vampire", src: "assets/jubal.jpg" })
     );
   },
 
@@ -61,7 +95,7 @@ var Crown = React.createClass({
     } else if (this.state.queen == 'Faith') {
       return React.createElement(Faith, null);
     } else if (this.state.queen == 'Lucy') {
-      return React.createElement(Lucy, null);
+      return React.createElement(Lucy, { action: this.lucy });
     } else if (this.state.queen == 'Harmony') {
       return React.createElement(Harmony, null);
     } else {
@@ -71,69 +105,69 @@ var Crown = React.createClass({
 });
 
 var Sigil = React.createClass({
-  displayName: 'Sigil',
+  displayName: "Sigil",
 
   render: function () {
-    return React.createElement('img', { src: 'assets/lilith.png' });
+    return React.createElement("img", { src: "assets/aradia.png" });
   }
 });
 
 var PrincessGrace = React.createClass({
-  displayName: 'PrincessGrace',
+  displayName: "PrincessGrace",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Grace, Who Longs For Purpose'
+      "Grace, Who Longs For Purpose"
     );
   }
 });
 
 var PrincessRose = React.createClass({
-  displayName: 'PrincessRose',
+  displayName: "PrincessRose",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Rose, Who Longs For Clarity'
+      "Rose, Who Longs For Clarity"
     );
   }
 });
 
 var PrincessFaith = React.createClass({
-  displayName: 'PrincessFaith',
+  displayName: "PrincessFaith",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Faith, Who Longs For Hope'
+      "Faith, Who Longs For Hope"
     );
   }
 });
 
 var PrincessLucy = React.createClass({
-  displayName: 'PrincessLucy',
+  displayName: "PrincessLucy",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Lucy, Who Longs For Justice'
+      "Lucy, Who Longs For Justice, Hates Her Father"
     );
   }
 });
 
 var PrincessHarmony = React.createClass({
-  displayName: 'PrincessHarmony',
+  displayName: "PrincessHarmony",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Harmony, Who Longs For Compassion'
+      "Harmony, Who Longs For Compassion"
     );
   }
 });
