@@ -1,5 +1,5 @@
 var Crown = React.createClass({
-  displayName: 'Crown',
+  displayName: "Crown",
 
   getInitialState() {
     return {
@@ -11,53 +11,68 @@ var Crown = React.createClass({
       return this.queen();
     }
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(Sigil, null),
       React.createElement(
-        'h3',
+        "h3",
         null,
-        'Hear the Cry of the Spiders'
+        "Hear the Cry of the Spiders"
       ),
       React.createElement(
-        'ul',
-        { className: 'char-select' },
-        React.createElement(PrincessGrace, null)
+        "ul",
+        { className: "char-select" },
+        React.createElement(PrincessGrace, null),
+        React.createElement(PrincessFaith, null)
       ),
       React.createElement(
-        'h3',
+        "h3",
         null,
-        'Why?'
+        "Why?"
       ),
       React.createElement(
-        'p',
+        "p",
         null,
-        'Because death is nothing more than reversed life.'
+        "Because death is nothing more than reversed life."
       ),
       React.createElement(
-        'h2',
+        "p",
         null,
-        'Good Answer.'
+        "Which your father knew better than most."
       ),
       React.createElement(
-        'p',
+        "h2",
         null,
-        'What is going to happen?'
+        "Good Answer."
       ),
       React.createElement(
-        'h3',
+        "p",
         null,
-        'Underwhelming Victory.'
+        "What is going to happen?"
       ),
       React.createElement(
-        'p',
+        "h3",
         null,
-        'What can I do about it?'
+        "Underwhelming Victory."
       ),
       React.createElement(
-        'h2',
+        "p",
         null,
-        'MATCH'
+        "Will there be a parade?"
+      ),
+      React.createElement(
+        "h2",
+        null,
+        "MATCH"
+      ),
+      React.createElement(
+        "iframe",
+        { className: "music", src: "https://bandcamp.com/EmbeddedPlayer/album=1985811939/size=large/bgcol=ffffff/linkcol=e99708/tracklist=false/artwork=small/track=46991148/transparent=true/", seamless: true },
+        React.createElement(
+          "a",
+          { href: "http://spiderprincess.bandcamp.com/album/in-league-with-what-now" },
+          "In League With What Now? by Spider Princess"
+        )
       )
     );
   },
@@ -102,69 +117,69 @@ var Crown = React.createClass({
 });
 
 var Sigil = React.createClass({
-  displayName: 'Sigil',
+  displayName: "Sigil",
 
   render: function () {
-    return React.createElement('img', { className: 'sigil', src: 'assets/lilith.png' });
+    return React.createElement("img", { className: "sigil", src: "assets/lilith.png" });
   }
 });
 
 var PrincessGrace = React.createClass({
-  displayName: 'PrincessGrace',
+  displayName: "PrincessGrace",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Your Purpose Is To Gather Poison'
+      "Your Purpose Is To Gather Poison"
     );
   }
 });
 
 var PrincessRose = React.createClass({
-  displayName: 'PrincessRose',
+  displayName: "PrincessRose",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Rose, Who Longs For Clarity, Hates Her Mother'
+      "Rose, Who Longs For Clarity, Hates Her Mother"
     );
   }
 });
 
 var PrincessFaith = React.createClass({
-  displayName: 'PrincessFaith',
+  displayName: "PrincessFaith",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Faith, Who Longs For Hope, Loves Her Father'
+      "Faith, Who Longs For Hope, Loves Her Father"
     );
   }
 });
 
 var PrincessLucy = React.createClass({
-  displayName: 'PrincessLucy',
+  displayName: "PrincessLucy",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Lucy, Who Longs For Justice, Hates Her Father'
+      "Lucy, Who Longs For Justice, Hates Her Father"
     );
   }
 });
 
 var PrincessHarmony = React.createClass({
-  displayName: 'PrincessHarmony',
+  displayName: "PrincessHarmony",
 
   render: function () {
     return React.createElement(
-      'li',
+      "li",
       { onClick: this.props.action },
-      'Harmony, Who Longs For Compassion, Loves Absolutely Everyone'
+      "Harmony, Who Longs For Compassion, Loves Absolutely Everyone"
     );
   }
 });

@@ -14,15 +14,17 @@ var Crown = React.createClass({
         <h3>Hear the Cry of the Spiders</h3>
         <ul className="char-select">
           <PrincessGrace />
+          <PrincessFaith />
         </ul>
         <h3>Why?</h3>
         <p>Because death is nothing more than reversed life.</p>
+        <p>Which your father knew better than most.</p>
         <h2>Good Answer.</h2>
         <p>What is going to happen?</p>
         <h3>Underwhelming Victory.</h3>
-        <p>What can I do about it?</p>
+        <p>Will there be a parade?</p>
         <h2>MATCH</h2>
-        
+        <iframe className="music" src="https://bandcamp.com/EmbeddedPlayer/album=1985811939/size=large/bgcol=ffffff/linkcol=e99708/tracklist=false/artwork=small/track=46991148/transparent=true/" seamless><a href="http://spiderprincess.bandcamp.com/album/in-league-with-what-now">In League With What Now? by Spider Princess</a></iframe>
       </div>
     );
   },
