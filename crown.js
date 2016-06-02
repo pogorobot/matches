@@ -16,16 +16,12 @@ var Crown = React.createClass({
           <PrincessGrace />
         </ul>
         <h3>Why?</h3>
-        <p>Because her mother knows exactly what is going to happen, and what she, Grace, can do about it.</p>
+        <p>Because death is nothing more than reversed life.</p>
         <h2>Good Answer.</h2>
         <p>What is going to happen?</p>
-        <h3>Overwhelming Violence.</h3>
+        <h3>Underwhelming Victory.</h3>
         <p>What can I do about it?</p>
-        <h2>WATCH</h2>
-        <iframe width="512" height="258" src="https://www.youtube.com/embed/_jFzDbsGK54" frameborder="0" allowfullscreen></iframe>
-        <p>I think I am beginning to see.</p>
-        <h3>You see nothing.</h3>
-        <p>That is kind of what I meant.</p>
+        <h2>MATCH</h2>
         
       </div>
     );
@@ -62,7 +58,7 @@ var Crown = React.createClass({
 
 var Sigil = React.createClass({
   render: function() {
-    return <img className="sigil" src="assets/setting.jpg" />;
+    return <img className="sigil" src="assets/lilith.png" />;
   }
 });
 
@@ -70,7 +66,7 @@ var Sigil = React.createClass({
 var PrincessGrace = React.createClass({
   render: function() {
     return (
-      <li onClick={this.props.action}>Grace, Who Longs For Purpose, Loves Her Mother</li>
+      <li onClick={this.props.action}>Your Purpose Is To Gather Poison</li>
     );
   }
 });
