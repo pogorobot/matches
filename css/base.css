@@ -131,3 +131,18 @@ img.tile {
 img.tile:hover {
   opacity: 0.666;
 }
+
+.vampire {
+  max-width: 512px;
+  border: 1px dotted red;
+}
+
+.witch {
+  max-width: 512px;
+  border-bottom: 1px dotted blue;
+}
+
+.anchor {
+  max-width: 512px;
+  border: 1px dotted blue;
+}
