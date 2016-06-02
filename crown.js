@@ -16,15 +16,19 @@ var Crown = React.createClass({
           <PrincessGrace />
           <PrincessFaith />
           <PrincessRose />
+          <PrincessLucy />
         </ul>
         <h3>Why?</h3>
         <p>Because death is nothing more than reversed life.</p>
         <p>Which your father took advantage of to imprison me.</p>
         <h2>Good Answer.</h2>
         <p>What is going to happen?</p>
-        <h3>Your Breath</h3>
-        <p>Will there be a parade?</p>
-        <h2>WASTE</h2>
+        <h3>Your Blood Is Hot.</h3>
+        <p>Oh nooo. Will I attract vampires?</p>
+        <h2>TRICK</h2>
+        <img className="vampire" src="assets/trick.jpg" />
+        <img className="witch" src="assets/willow.png" />
+        <img className="vampire" src="assets/jubal.jpg" />
       </div>
     );
   },
@@ -49,7 +53,7 @@ var Crown = React.createClass({
     } else if (this.state.queen == 'Faith') {
       return <Faith />;
     } else if (this.state.queen == 'Lucy') {
-      return <Lucy />;
+      return <Lucy action={this.lucy} />;
     } else if (this.state.queen == 'Harmony') {
       return <Harmony />;
     } else {

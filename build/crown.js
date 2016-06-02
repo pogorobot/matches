@@ -24,7 +24,8 @@ var Crown = React.createClass({
         { className: "char-select" },
         React.createElement(PrincessGrace, null),
         React.createElement(PrincessFaith, null),
-        React.createElement(PrincessRose, null)
+        React.createElement(PrincessRose, null),
+        React.createElement(PrincessLucy, null)
       ),
       React.createElement(
         "h3",
@@ -39,7 +40,7 @@ var Crown = React.createClass({
       React.createElement(
         "p",
         null,
-        "Which your father took advantage of to trick me."
+        "Which your father took advantage of to imprison me."
       ),
       React.createElement(
         "h2",
@@ -54,27 +55,21 @@ var Crown = React.createClass({
       React.createElement(
         "h3",
         null,
-        "Your Breath"
+        "Your Blood Is Hot."
       ),
       React.createElement(
         "p",
         null,
-        "Will there be a parade?"
+        "Oh nooo. Will I attract vampires?"
       ),
       React.createElement(
         "h2",
         null,
-        "WASTE"
+        "TRICK"
       ),
-      React.createElement(
-        "iframe",
-        { className: "music", src: "https://bandcamp.com/EmbeddedPlayer/album=1985811939/size=large/bgcol=ffffff/linkcol=e99708/tracklist=false/artwork=small/track=46991148/transparent=true/", seamless: true },
-        React.createElement(
-          "a",
-          { href: "http://spiderprincess.bandcamp.com/album/in-league-with-what-now" },
-          "In League With What Now? by Spider Princess"
-        )
-      )
+      React.createElement("img", { className: "vampire", src: "assets/trick.jpg" }),
+      React.createElement("img", { className: "witch", src: "assets/willow.png" }),
+      React.createElement("img", { className: "vampire", src: "assets/jubal.jpg" })
     );
   },
 
@@ -108,7 +103,7 @@ var Crown = React.createClass({
     } else if (this.state.queen == 'Faith') {
       return React.createElement(Faith, null);
     } else if (this.state.queen == 'Lucy') {
-      return React.createElement(Lucy, null);
+      return React.createElement(Lucy, { action: this.lucy });
     } else if (this.state.queen == 'Harmony') {
       return React.createElement(Harmony, null);
     } else {
