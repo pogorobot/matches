@@ -23,7 +23,8 @@ var Crown = React.createClass({
         "ul",
         { className: "char-select" },
         React.createElement(PrincessGrace, null),
-        React.createElement(PrincessFaith, null)
+        React.createElement(PrincessFaith, null),
+        React.createElement(PrincessRose, null)
       ),
       React.createElement(
         "h3",
@@ -38,7 +39,7 @@ var Crown = React.createClass({
       React.createElement(
         "p",
         null,
-        "Which your father knew better than most."
+        "Which your father took advantage of to trick me."
       ),
       React.createElement(
         "h2",
@@ -53,7 +54,7 @@ var Crown = React.createClass({
       React.createElement(
         "h3",
         null,
-        "Underwhelming Victory."
+        "Your Breath"
       ),
       React.createElement(
         "p",
@@ -63,7 +64,7 @@ var Crown = React.createClass({
       React.createElement(
         "h2",
         null,
-        "MATCH"
+        "WASTE"
       ),
       React.createElement(
         "iframe",
