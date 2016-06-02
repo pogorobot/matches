@@ -21,3 +21,8 @@ body {
 #container {
   background-color: #eef;
 }
+
+.anchor {
+  max-width: 512px;
+  border: 1px dotted blue;
+}

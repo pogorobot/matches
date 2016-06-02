@@ -19,13 +19,15 @@ var Crown = React.createClass({
         null,
         "Hear the Cry of the Spiders"
       ),
+      React.createElement("img", { className: "anchor", src: "assets/setting.jpg" }),
       React.createElement(
         "ul",
         { className: "char-select" },
         React.createElement(PrincessGrace, null),
         React.createElement(PrincessFaith, null),
         React.createElement(PrincessRose, null),
-        React.createElement(PrincessLucy, null)
+        React.createElement(PrincessLucy, null),
+        React.createElement(PrincessHarmony, null)
       ),
       React.createElement(
         "h3",
@@ -42,6 +44,7 @@ var Crown = React.createClass({
         null,
         "Which your father took advantage of to imprison me."
       ),
+      React.createElement("img", { className: "vampire", src: "assets/trick.jpg" }),
       React.createElement(
         "h2",
         null,
@@ -52,6 +55,7 @@ var Crown = React.createClass({
         null,
         "What is going to happen?"
       ),
+      React.createElement("img", { className: "witch", src: "assets/willow.png" }),
       React.createElement(
         "h3",
         null,
@@ -62,14 +66,28 @@ var Crown = React.createClass({
         null,
         "Oh nooo. Will I attract vampires?"
       ),
+      React.createElement("img", { className: "vampire", src: "assets/jubal.jpg" }),
       React.createElement(
         "h2",
         null,
-        "TRICK"
+        "Do You Love Yourself, Then?"
       ),
-      React.createElement("img", { className: "vampire", src: "assets/trick.jpg" }),
-      React.createElement("img", { className: "witch", src: "assets/willow.png" }),
-      React.createElement("img", { className: "vampire", src: "assets/jubal.jpg" })
+      React.createElement(
+        "p",
+        null,
+        "More than anything. ::::)"
+      ),
+      React.createElement("img", { className: "anchor", src: "assets/jade.gif" }),
+      React.createElement(
+        "h3",
+        null,
+        "Well, that was easy enough."
+      ),
+      React.createElement(
+        "p",
+        null,
+        "Onward and upward!"
+      )
     );
   },
 
@@ -139,7 +157,7 @@ var PrincessRose = React.createClass({
     return React.createElement(
       "li",
       { onClick: this.props.action },
-      "Rose, Who Longs For Clarity, Hates Her Mother"
+      "From Rose: A Poison Of Blindness"
     );
   }
 });
@@ -151,7 +169,7 @@ var PrincessFaith = React.createClass({
     return React.createElement(
       "li",
       { onClick: this.props.action },
-      "Faith, Who Longs For Hope, Loves Her Father"
+      "From Faith: A Poison Of Helplessness"
     );
   }
 });
@@ -163,7 +181,7 @@ var PrincessLucy = React.createClass({
     return React.createElement(
       "li",
       { onClick: this.props.action },
-      "Lucy, Who Longs For Justice, Hates Her Father"
+      "From Lucy: A Poison Of Imprisonment"
     );
   }
 });
@@ -175,7 +193,7 @@ var PrincessHarmony = React.createClass({
     return React.createElement(
       "li",
       { onClick: this.props.action },
-      "Harmony, Who Longs For Compassion, Loves Absolutely Everyone"
+      "From Harmony: A Universal Antidote"
     );
   }
 });
